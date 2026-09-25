@@ -1,0 +1,432 @@
+:root {
+	--bg-main: #f0f9ff;
+	--card-bg: #ffffff;
+	--primary-blue: #0284c7;
+	--sky-blue: #38bdf8;
+	--light-blue: #e0f2fe;
+	--pill-blue: #bae6fd;
+	--dark-text: #0c4a6e;
+	--muted-text: #475569;
+	--shadow-soft: 0 10px 30px -5px rgba(14, 165, 233, 0.15);
+	--shadow-hover: 0 20px 35px -5px rgba(14, 165, 233, 0.25);
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Tajawal', sans-serif;
+}
+
+body {
+	background-color: var(--bg-main);
+	color: var(--dark-text);
+	direction: rtl;
+}
+
+.container {
+	width: 90%;
+	max-width: 1100px;
+	margin: 0 auto;
+}
+
+/* الهيدر */
+.header {
+	background: #ffffff;
+	box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+	position: sticky;
+	top: 0;
+	z-index: 100;
+}
+
+.header-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 12px 0;
+}
+
+.logo-badge {
+	border: 2px solid var(--sky-blue);
+	padding: 6px 18px;
+	border-radius: 40px;
+	text-align: center;
+	background: #fafafa;
+}
+
+	.logo-badge span {
+		font-size: 10px;
+		color: var(--primary-blue);
+		display: block;
+		font-weight: bold;
+		letter-spacing: 1px;
+	}
+
+	.logo-badge h1 {
+		font-size: 20px;
+		color: var(--dark-text);
+		line-height: 1;
+		font-weight: 900;
+	}
+
+	.logo-badge p {
+		font-size: 9px;
+		color: var(--primary-blue);
+		font-weight: bold;
+	}
+
+.nav-links a {
+	margin: 0 10px;
+	text-decoration: none;
+	color: var(--dark-text);
+	font-weight: 700;
+	transition: 0.3s;
+}
+
+	.nav-links a:hover {
+		color: var(--primary-blue);
+	}
+
+.cart-btn {
+	background: linear-gradient(135deg, var(--sky-blue), var(--primary-blue));
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 25px;
+	font-weight: bold;
+	cursor: pointer;
+	box-shadow: 0 4px 15px rgba(2, 132, 199, 0.3);
+	transition: transform 0.2s;
+}
+
+	.cart-btn:hover {
+		transform: scale(1.05);
+	}
+
+#cart-count {
+	background: white;
+	color: var(--primary-blue);
+	padding: 2px 8px;
+	border-radius: 12px;
+	margin-right: 5px;
+	font-size: 13px;
+}
+
+/* الهيرو */
+.hero {
+	background: linear-gradient(180deg, #e0f2fe 0%, var(--bg-main) 100%);
+	text-align: center;
+	padding: 50px 0 30px;
+}
+
+.hero-badge {
+	display: inline-block;
+	background: white;
+	padding: 6px 16px;
+	border-radius: 20px;
+	font-size: 13px;
+	color: var(--primary-blue);
+	font-weight: bold;
+	box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+	margin-bottom: 15px;
+}
+
+.hero h1 {
+	font-size: 45px;
+	color: var(--dark-text);
+	font-weight: 900;
+}
+
+.slogan {
+	color: var(--primary-blue);
+	font-weight: 800;
+	font-size: 18px;
+	margin-bottom: 10px;
+}
+
+.hero-desc {
+	color: var(--muted-text);
+	margin-bottom: 25px;
+	font-size: 15px;
+}
+
+.btn {
+	display: inline-block;
+	padding: 12px 28px;
+	border-radius: 30px;
+	text-decoration: none;
+	font-weight: bold;
+	margin: 5px;
+	transition: 0.3s;
+}
+
+.btn-primary {
+	background: var(--dark-text);
+	color: white;
+}
+
+.btn-whatsapp {
+	background: #25d366;
+	color: white;
+}
+
+/* شريط فودافون كاش */
+.info-bar {
+	margin: 20px 0;
+}
+
+.info-card {
+	background: white;
+	border-radius: 18px;
+	padding: 18px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 15px;
+	box-shadow: var(--shadow-soft);
+	border: 2px dashed var(--sky-blue);
+}
+
+	.info-card .icon {
+		font-size: 32px;
+	}
+
+	.info-card h4 {
+		font-size: 14px;
+		color: var(--muted-text);
+	}
+
+.phone-link {
+	font-size: 22px;
+	font-weight: 900;
+	color: var(--primary-blue);
+	letter-spacing: 1px;
+}
+
+/* المنيو */
+.menu-section {
+	padding: 30px 0 60px;
+}
+
+.section-title-wrap {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+	.section-title-wrap h2 {
+		font-size: 28px;
+		color: var(--dark-text);
+		font-weight: 900;
+	}
+
+.decor-line {
+	height: 4px;
+	width: 60px;
+	background: var(--sky-blue);
+	margin: 8px auto 0;
+	border-radius: 2px;
+}
+
+/* التبويبات */
+.categories {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	flex-wrap: wrap;
+	margin-bottom: 35px;
+}
+
+.tab-btn {
+	background: white;
+	border: 2px solid var(--pill-blue);
+	padding: 10px 20px;
+	border-radius: 25px;
+	cursor: pointer;
+	font-weight: bold;
+	color: var(--dark-text);
+	transition: 0.3s;
+}
+
+	.tab-btn.active, .tab-btn:hover {
+		background: var(--sky-blue);
+		color: white;
+		border-color: var(--sky-blue);
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(56, 189, 248, 0.4);
+	}
+
+/* شبكة الكروت */
+.menu-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+	gap: 22px;
+}
+
+.menu-card {
+	background: var(--card-bg);
+	border-radius: 20px;
+	padding: 22px;
+	box-shadow: var(--shadow-soft);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	transition: all 0.3s ease;
+	border: 1px solid #f1f5f9;
+}
+
+	.menu-card:hover {
+		transform: translateY(-6px);
+		box-shadow: var(--shadow-hover);
+	}
+
+.item-badge {
+	background: var(--light-blue);
+	color: var(--primary-blue);
+	font-size: 11px;
+	padding: 4px 10px;
+	border-radius: 12px;
+	display: inline-block;
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+
+.item-name {
+	font-size: 19px;
+	color: var(--dark-text);
+	font-weight: 800;
+	margin-bottom: 6px;
+}
+
+.item-desc {
+	font-size: 13px;
+	color: var(--muted-text);
+	margin-bottom: 20px;
+	line-height: 1.5;
+}
+
+.card-footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-top: 1px solid #f1f5f9;
+	padding-top: 15px;
+}
+
+.price {
+	font-size: 20px;
+	font-weight: 900;
+	color: var(--primary-blue);
+}
+
+.add-btn {
+	background: var(--pill-blue);
+	color: var(--dark-text);
+	border: none;
+	padding: 9px 16px;
+	border-radius: 14px;
+	font-weight: 800;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+	.add-btn:hover {
+		background: var(--sky-blue);
+		color: white;
+	}
+
+/* سلة الطلبات */
+.cart-drawer {
+	position: fixed;
+	top: 0;
+	left: -400px;
+	width: 350px;
+	height: 100vh;
+	background: white;
+	box-shadow: 10px 0 30px rgba(0,0,0,0.15);
+	z-index: 1000;
+	transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	display: flex;
+	flex-direction: column;
+}
+
+	.cart-drawer.open {
+		left: 0;
+	}
+
+.cart-header {
+	background: var(--dark-text);
+	color: white;
+	padding: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.close-btn {
+	background: none;
+	border: none;
+	color: white;
+	font-size: 22px;
+	cursor: pointer;
+}
+
+.cart-body {
+	padding: 20px;
+	flex-grow: 1;
+	overflow-y: auto;
+}
+
+.cart-item-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 12px;
+	padding-bottom: 10px;
+	border-bottom: 1px dashed #e2e8f0;
+}
+
+.cart-footer {
+	padding: 20px;
+	background: var(--bg-main);
+	border-top: 1px solid #e2e8f0;
+}
+
+.total-row {
+	display: flex;
+	justify-content: space-between;
+	font-size: 19px;
+	font-weight: 900;
+	margin-bottom: 15px;
+	color: var(--dark-text);
+}
+
+.btn-whatsapp-send {
+	width: 100%;
+	background: #25d366;
+	color: white;
+	border: none;
+	padding: 14px;
+	border-radius: 15px;
+	font-weight: bold;
+	cursor: pointer;
+	font-size: 15px;
+}
+
+/* الفوتر */
+.footer {
+	background: var(--dark-text);
+	color: white;
+	padding: 40px 0;
+	text-align: center;
+}
+
+.footer-phone {
+	margin: 15px 0;
+	color: var(--sky-blue);
+	font-size: 20px;
+}
+
+.copy {
+	font-size: 12px;
+	color: #94a3b8;
+}
