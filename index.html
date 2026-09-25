@@ -269,13 +269,12 @@
             border-radius: 2px;
         }
 
-        /* شبكة أزرار التصنيفات */
+        /* حاوية الأقسام الرئيسية */
         .category-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
             gap: 15px;
             margin-bottom: 30px;
-            transition: all 0.3s ease;
         }
 
         .category-card {
@@ -335,9 +334,9 @@
                     border-color: white;
                 }
 
-        /* حاوية عرض الأصناف (ستظهر في الأعلى عند اختيار قسم) */
-        .menu-display-area {
-            scroll-margin-top: 90px;
+        /* مساحة العرض الديناميكية */
+        .active-section-container {
+            scroll-margin-top: 80px;
             margin-bottom: 30px;
         }
 
@@ -346,10 +345,10 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 22px;
+            margin-top: 20px;
         }
 
         .empty-select-msg {
-            grid-column: 1 / -1;
             text-align: center;
             padding: 40px 20px;
             background: white;
@@ -358,6 +357,7 @@
             color: var(--muted-text);
             font-size: 16px;
             font-weight: 500;
+            margin-bottom: 30px;
         }
 
         .menu-card {
@@ -624,38 +624,36 @@
                 <div class="decor-line"></div>
             </div>
 
-            <!-- مكان عرض الأصناف (يظهر أولاً عند اختيار تبويب) -->
-            <div id="menu-display-area" class="menu-display-area">
-                <div class="menu-grid" id="menu-grid">
-                    <div class="empty-select-msg">
-                        👇 اضغط على أي قسم بالأسفل لعرض الاصناف الخاصة به مباشرة
-                    </div>
+            <!-- مكان عرض التبويب النشط ومحتوياته في الأعلى -->
+            <div id="active-section-container" class="active-section-container">
+                <div class="empty-select-msg" id="default-msg">
+                    👇 اضغط على أي قسم بالأسفل لعرض التبويب ومحتوياته مباشرة هنا
                 </div>
             </div>
 
-            <!-- أزرار التصنيفات المربعة الكبيرة -->
+            <!-- شبكة أزرار التصنيفات الباقية -->
             <div class="category-grid" id="category-grid">
-                <div class="category-card" onclick="filterMenu('happiness', this)">
+                <div class="category-card" data-category="happiness" onclick="filterMenu('happiness', this)">
                     <img src="happiness.jpg" alt="ميكس السعادة">
                     <h3>ميكس السعادة </h3>
                 </div>
-                <div class="category-card" onclick="filterMenu('pancake', this)">
+                <div class="category-card" data-category="pancake" onclick="filterMenu('pancake', this)">
                     <img src="pancake.jpg" alt="ميني بان كيك">
                     <h3>ميني بان كيك </h3>
                 </div>
-                <div class="category-card" onclick="filterMenu('freska', this)">
+                <div class="category-card" data-category="freska" onclick="filterMenu('freska', this)">
                     <img src="freska.jpg" alt="فريسكا">
                     <h3>فريسكا </h3>
                 </div>
-                <div class="category-card" onclick="filterMenu('coffee', this)">
+                <div class="category-card" data-category="coffee" onclick="filterMenu('coffee', this)">
                     <img src="coffee.jpg" alt="ايس كوفي">
                     <h3>ايس كوفي </h3>
                 </div>
-                <div class="category-card" onclick="filterMenu('soda', this)">
+                <div class="category-card" data-category="soda" onclick="filterMenu('soda', this)">
                     <img src="soda.jpg" alt="ميكس صودا">
                     <h3>ميكس صودا </h3>
                 </div>
-                <div class="category-card" onclick="filterMenu('addons', this)">
+                <div class="category-card" data-category="addons" onclick="filterMenu('addons', this)">
                     <img src="addons.jpg" alt="إضافات">
                     <h3>إضافات </h3>
                 </div>
@@ -746,29 +744,55 @@
         let currentActiveCategory = null; 
 
         function filterMenu(category, element) {
-            const container = document.getElementById('menu-grid');
-            const displayArea = document.getElementById('menu-display-area');
+            const activeContainer = document.getElementById('active-section-container');
+            const categoryGrid = document.getElementById('category-grid');
 
             if (currentActiveCategory === category) {
+                // إلغاء التحديد وإرجاع الزر مكانه الطبيعي
                 element.classList.remove('active');
                 currentActiveCategory = null;
-                container.innerHTML = `
-                    <div class="empty-select-msg">
-                        👇 اضغط على أي قسم بالأسفل لعرض الاصناف الخاصة به مباشرة
+                categoryGrid.appendChild(element); // يرجع لمكانه مع البقية
+                
+                activeContainer.innerHTML = `
+                    <div class="empty-select-msg" id="default-msg">
+                        👇 اضغط على أي قسم بالأسفل لعرض التبويب ومحتوياته مباشرة هنا
                     </div>
                 `;
                 return;
             }
 
-            document.querySelectorAll('.category-card').forEach(card => card.classList.remove('active'));
+            // لو فيه تبويب قديم محدد، نرجعه لشبكة الأزرار الأساسية الأول
+            const oldActive = document.querySelector('.category-card.active');
+            if (oldActive) {
+                oldActive.classList.remove('active');
+                categoryGrid.appendChild(oldActive);
+            }
+
+            // تحديد التبويب الجديد
             element.classList.add('active');
             currentActiveCategory = category;
 
-            const filteredItems = menuData.filter(i => i.category === category);
-            container.innerHTML = '';
+            // نضع زر التبويب المحدد في أعلى حاوية العرض، وتحته مباشرة منتجاته
+            activeContainer.innerHTML = '';
+            
+            // إنشاء نسخة متحركة من الزر ليظهر فوق المنتجات
+            let topCardWrapper = document.createElement('div');
+            topCardWrapper.style.display = 'flex';
+            topCardWrapper.style.justifyContent = 'center';
+            topCardWrapper.style.marginBottom = '20px';
+            
+            let clonedCard = element.cloneNode(true);
+            clonedCard.onclick = () => filterMenu(category, element); // إعادة ربط الحدث
+            topCardWrapper.appendChild(clonedCard);
+            
+            activeContainer.appendChild(topCardWrapper);
 
+            // تصفية المنتجات وعرضها تحت زر التبويب مباشرة
+            const filteredItems = menuData.filter(i => i.category === category);
+            let gridHtml = `<div class="menu-grid">`;
+            
             filteredItems.forEach(item => {
-                container.innerHTML += `
+                gridHtml += `
                     <div class="menu-card">
                         <div>
                             <span class="item-badge">${item.badge}</span>
@@ -782,13 +806,12 @@
                     </div>
                 `;
             });
+            gridHtml += `</div>`;
+            activeContainer.innerHTML += gridHtml;
 
-            // تحريك أزرار الأقسام غير المكتشفة إلى الأسفل وجعل محتوى القسم يظهر في الأعلى تماماً
-            const categoryGrid = document.getElementById('category-grid');
-            const menuSection = document.getElementById('menu-section');
-            
-            menuSection.appendChild(categoryGrid); // نقل أزرار الأقسام لتصبح تحت الأصناف المعروضة
-            displayArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // باقي الأزرار ستكون في شبكة الأزرار بالأسفل تلقائياً
+            // تمرير سلس ليظهر التبويب المختار ومحتواه في أعلى الشاشة تماماً
+            activeContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         function addToCart(id) {
