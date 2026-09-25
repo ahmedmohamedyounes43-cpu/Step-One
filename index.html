@@ -67,26 +67,26 @@
             background: #fafafa;
         }
 
-            .logo-badge span {
-                font-size: 10px;
-                color: var(--primary-blue);
-                display: block;
-                font-weight: bold;
-                letter-spacing: 1px;
-            }
+        .logo-badge span {
+            font-size: 10px;
+            color: var(--primary-blue);
+            display: block;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
 
-            .logo-badge h1 {
-                font-size: 20px;
-                color: var(--dark-text);
-                line-height: 1;
-                font-weight: 900;
-            }
+        .logo-badge h1 {
+            font-size: 20px;
+            color: var(--dark-text);
+            line-height: 1;
+            font-weight: 900;
+        }
 
-            .logo-badge p {
-                font-size: 9px;
-                color: var(--primary-blue);
-                font-weight: bold;
-            }
+        .logo-badge p {
+            font-size: 9px;
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
 
         .cart-btn {
             background: linear-gradient(135deg, var(--sky-blue), var(--primary-blue));
@@ -100,9 +100,9 @@
             transition: transform 0.2s;
         }
 
-            .cart-btn:hover {
-                transform: scale(1.05);
-            }
+        .cart-btn:hover {
+            transform: scale(1.05);
+        }
 
         #cart-count {
             background: white;
@@ -170,7 +170,7 @@
             color: white;
         }
 
-        /* شريط معلومات التوصيل وفودافون كاش */
+        /* شريط معلومات التوصيل */
         .info-bar {
             margin: 20px 0;
         }
@@ -187,14 +187,14 @@
             border: 2px dashed var(--sky-blue);
         }
 
-            .info-card .icon {
-                font-size: 32px;
-            }
+        .info-card .icon {
+            font-size: 32px;
+        }
 
-            .info-card h4 {
-                font-size: 14px;
-                color: var(--muted-text);
-            }
+        .info-card h4 {
+            font-size: 14px;
+            color: var(--muted-text);
+        }
 
         .phone-link {
             font-size: 22px;
@@ -227,23 +227,14 @@
             margin: 5px;
         }
 
-            .social-icon:hover {
-                transform: scale(1.05);
-                opacity: 0.9;
-            }
-
-        .insta {
-            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        .social-icon:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
         }
 
-        .fb {
-            background: #1877f2;
-        }
-
-        .tiktok {
-            background: #010101;
-            border: 1px solid #333;
-        }
+        .insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .fb { background: #1877f2; }
+        .tiktok { background: #010101; border: 1px solid #333; }
 
         /* المنيو والتبويبات */
         .menu-section {
@@ -255,11 +246,11 @@
             margin-bottom: 30px;
         }
 
-            .section-title-wrap h2 {
-                font-size: 28px;
-                color: var(--dark-text);
-                font-weight: 900;
-            }
+        .section-title-wrap h2 {
+            font-size: 28px;
+            color: var(--dark-text);
+            font-weight: 900;
+        }
 
         .decor-line {
             height: 4px;
@@ -292,60 +283,56 @@
             box-shadow: var(--shadow-soft);
         }
 
-            .category-card img {
-                width: 100px;
-                height: 100px;
-                object-fit: cover;
-                border-radius: 50%;
-                margin-bottom: 12px;
-                border: 4px solid var(--light-blue);
-                box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-                transition: transform 0.3s;
-            }
-
-            .category-card h3 {
-                font-size: 16px;
-                color: var(--dark-text);
-                font-weight: 800;
-            }
-
-            .category-card:hover {
-                transform: translateY(-5px);
-                border-color: var(--sky-blue);
-                box-shadow: var(--shadow-hover);
-            }
-
-                .category-card:hover img {
-                    transform: scale(1.08);
-                }
-
-            .category-card.active {
-                background: linear-gradient(135deg, var(--sky-blue), var(--primary-blue));
-                border-color: var(--primary-blue);
-                color: white;
-                box-shadow: 0 10px 20px rgba(2, 132, 199, 0.3);
-            }
-
-                .category-card.active h3 {
-                    color: white;
-                }
-
-                .category-card.active img {
-                    border-color: white;
-                }
-
-        /* مساحة العرض الديناميكية */
-        .active-section-container {
-            scroll-margin-top: 80px;
-            margin-bottom: 30px;
+        .category-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 12px;
+            border: 4px solid var(--light-blue);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
         }
 
-        /* شبكة الكروت للأصناف */
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 22px;
-            margin-top: 20px;
+        .category-card h3 {
+            font-size: 16px;
+            color: var(--dark-text);
+            font-weight: 800;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--sky-blue);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .category-card:hover img {
+            transform: scale(1.08);
+        }
+
+        /* تصميم الكارت عندما يصبح نشطاً في الأعلى */
+        .category-card.active-pinned {
+            background: linear-gradient(135deg, var(--sky-blue), var(--primary-blue));
+            border-color: var(--primary-blue);
+            color: white;
+            box-shadow: 0 10px 20px rgba(2, 132, 199, 0.3);
+            width: 220px;
+            margin: 0 auto;
+            transform: scale(1.05);
+        }
+
+        .category-card.active-pinned h3 {
+            color: white;
+        }
+
+        .category-card.active-pinned img {
+            border-color: white;
+        }
+
+        /* مساحة العرض الديناميكية (التي ستظهر فوق المنتجات) */
+        .active-section-container {
+            scroll-margin-top: 80px;
+            margin-bottom: 40px;
         }
 
         .empty-select-msg {
@@ -360,6 +347,14 @@
             margin-bottom: 30px;
         }
 
+        /* شبكة الكروت للأصناف */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 22px;
+            margin-top: 20px;
+        }
+
         .menu-card {
             background: var(--card-bg);
             border-radius: 20px;
@@ -372,10 +367,10 @@
             border: 1px solid #f1f5f9;
         }
 
-            .menu-card:hover {
-                transform: translateY(-6px);
-                box-shadow: var(--shadow-hover);
-            }
+        .menu-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
 
         .item-badge {
             background: var(--light-blue);
@@ -427,10 +422,10 @@
             transition: 0.2s;
         }
 
-            .add-btn:hover {
-                background: var(--sky-blue);
-                color: white;
-            }
+        .add-btn:hover {
+            background: var(--sky-blue);
+            color: white;
+        }
 
         /* سلة الطلبات التفاعلية */
         .cart-drawer {
@@ -447,9 +442,9 @@
             flex-direction: column;
         }
 
-            .cart-drawer.open {
-                left: 0;
-            }
+        .cart-drawer.open {
+            left: 0;
+        }
 
         .cart-header {
             background: var(--dark-text);
@@ -577,7 +572,7 @@
         </div>
     </header>
 
-    <!-- قسم الهيرو الترحيبي الرئيسي -->
+    <!-- قسم الهيرو الترحيبي -->
     <section class="hero">
         <div class="container hero-content">
             <div class="hero-badge">
@@ -594,7 +589,6 @@
                 <a href="https://wa.me/201043084581" target="_blank" class="btn btn-whatsapp">تواصل واتساب 💬</a>
             </div>
 
-            <!-- أزرار السوشيال ميديا -->
             <div class="social-links">
                 <a href="https://www.instagram.com/step_egy?stkn=dXVoZWxseWJ5eHZk" target="_blank" class="social-icon insta">Instagram</a>
                 <a href="https://www.facebook.com/share/18kts68jPC/" target="_blank" class="social-icon fb">Facebook</a>
@@ -603,7 +597,7 @@
         </div>
     </section>
 
-    <!-- شريط معلومات التوصيل وفودافون كاش -->
+    <!-- شريط معلومات التوصيل -->
     <section class="info-bar" id="delivery">
         <div class="container info-grid">
             <div class="info-card">
@@ -624,36 +618,37 @@
                 <div class="decor-line"></div>
             </div>
 
-            <!-- مكان عرض التبويب النشط ومحتوياته في الأعلى -->
+            <!-- حاوية التبويب النشط ومحتوياته في الأعلى -->
             <div id="active-section-container" class="active-section-container">
                 <div class="empty-select-msg" id="default-msg">
-                    👇 اضغط على أي قسم بالأسفل لعرض التبويب ومحتوياته مباشرة هنا
+                    👇 اضغط على أي قسم بالأسفل لعرض التبويب في الأعلى ومحتوياته مباشرة تحته
                 </div>
             </div>
 
-            <!-- شبكة أزرار التصنيفات الباقية -->
+            <!-- شبكة أزرار التصنيفات (الباقية) -->
             <div class="category-grid" id="category-grid">
-                <div class="category-card" data-category="happiness" onclick="filterMenu('happiness', this)">
+                <div class="category-card" data-category="happiness" onclick="selectCategory('happiness')">
                     <img src="happiness.jpg" alt="ميكس السعادة">
                     <h3>ميكس السعادة </h3>
                 </div>
-                <div class="category-card" data-category="pancake" onclick="filterMenu('pancake', this)">
+                <div class="category-card" data-category="pancake" onclick="selectCategory('pancake')">
                     <img src="pancake.jpg" alt="ميني بان كيك">
                     <h3>ميني بان كيك </h3>
                 </div>
-                <div class="category-card" data-category="freska" onclick="filterMenu('freska', this)">
+                <div class="category-card" data-category="freska" onclick="selectCategory('freska')">
+                    <selectCategory></selectCategory>
                     <img src="freska.jpg" alt="فريسكا">
                     <h3>فريسكا </h3>
                 </div>
-                <div class="category-card" data-category="coffee" onclick="filterMenu('coffee', this)">
+                <div class="category-card" data-category="coffee" onclick="selectCategory('coffee')">
                     <img src="coffee.jpg" alt="ايس كوفي">
                     <h3>ايس كوفي </h3>
                 </div>
-                <div class="category-card" data-category="soda" onclick="filterMenu('soda', this)">
+                <div class="category-card" data-category="soda" onclick="selectCategory('soda')">
                     <img src="soda.jpg" alt="ميكس صودا">
                     <h3>ميكس صودا </h3>
                 </div>
-                <div class="category-card" data-category="addons" onclick="filterMenu('addons', this)">
+                <div class="category-card" data-category="addons" onclick="selectCategory('addons')">
                     <img src="addons.jpg" alt="إضافات">
                     <h3>إضافات </h3>
                 </div>
@@ -668,7 +663,7 @@
             <button class="close-btn" onclick="toggleCart()">✕</button>
         </div>
         <div class="cart-body" id="cart-items">
-            <p class="empty-msg" style="text-align:center; color:#64748b; margin-top:20px;">السلة فارغة حالياً، اختر أطباقك المفضلة!</p>
+            <p class="empty-msg" style="text-align:center; color:#64748b; margin-top:20px;">السلة فارغة حالياً</p>
         </div>
         <div class="cart-footer">
             <div class="total-row">
@@ -686,113 +681,104 @@
         <div class="container">
             <h3>step one</h3>
             <p>• Keep coming back •</p>
-
             <p class="footer-phone">Designed by: <strong>Eng: Ahmed Younes and Abdo Shata</strong></p>
             <p class="copy">01002285611</p>
         </div>
     </footer>
 
-    <!-- برمجة الجافاسكريبت التفاعلية -->
+    <!-- جافاسكريبت المنيو والتبويبات -->
     <script>
         const menuData = [
-        // ميكس السعاده
-        { id: 1, name: "ميكس شوكلت", price: 70, category: "happiness", badge: "ميكس السعادة", desc: "باستري كريم + اوريو + مارشميلو + قطع فاكهة" },
-        { id: 2, name: "ميكس كارميل", price: 70, category: "happiness", badge: "ميكس السعادة", desc: "باستري كريم + اوريو + مارشميلو + قطع فاكهة" },
-        { id: 3, name: "ميكس نوتيلا وايت", price: 75, category: "happiness", badge: "ميكس السعادة", desc: "باستري كريم + اوريو + مارشميلو + قطع فاكهة" },
-        { id: 4, name: "ميكس نوتيلا دارك", price: 80, category: "happiness", badge: "ميكس السعادة", desc: "باستري كريم + اوريو + مارشميلو + قطع فاكهة" },
-        { id: 5, name: "ميكس لوتس", price: 80, category: "happiness", badge: "ميكس السعادة", desc: "باستري كريم + اوريو + مارشميلو + قطع فاكهة" },
-        { id: 6, name: "ميكس كيندر", price: 85, category: "happiness", badge: "ميكس السعادة", desc: "باستري كريم + اوريو + مارشميلو + قطع فاكهة" },
+            { id: 1, name: "ميكس شوكلت", price: 70, category: "happiness", badge: "ميكس السعادة", desc: "باستري كريم + اوريو + مارشميلو + قطع فاكهة" },
+            { id: 2, name: "ميكس كارميل", price: 70, category: "happiness", badge: "ميكس السعادة", desc: "باستري كريم + اوريو + مارشميلو + قطع فاكهة" },
+            { id: 3, name: "ميكس نوتيلا وايت", price: 75, category: "happiness", badge: "ميكس السعادة", desc: "باستري كريم + اوريو + مارشميلو + قطع فاكهة" },
+            { id: 4, name: "ميكس نوتيلا دارك", price: 80, category: "happiness", badge: "ميكس السعادة", desc: "باستري كريم + اوريو + مارشميلو + قطع فاكهة" },
+            { id: 5, name: "ميكس لوتس", price: 80, category: "happiness", badge: "ميكس السعادة", desc: "باستري كريم + اوريو + مارشميلو + قطع فاكهة" },
+            { id: 6, name: "ميكس كيندر", price: 85, category: "happiness", badge: "ميكس السعادة", desc: "باستري كريم + اوريو + مارشميلو + قطع فاكهة" },
 
-        // ميني بان كيك
-        { id: 8, name: "ميني بان كيك شوكلت (12 قطعة)", price: 40, category: "pancake", badge: "ميني بان كيك", desc: "12 قطعة ميني بان كيك مع الشوكلاتة" },
-        { id: 10, name: "ميني بان كيك كارميل (12 قطعة)", price: 40, category: "pancake", badge: "ميني بان كيك", desc: "12 قطعة ميني بان كيك بصوص الكارميل" },
-        { id: 12, name: "ميني بان كيك نوتيلا وايت (12 قطعة)", price: 50, category: "pancake", badge: "ميني بان كيك", desc: "12 قطعة بصوص النوتيلا البيضاء" },
-        { id: 14, name: "ميني بان كيك نوتيلا دارك (12 قطعة)", price: 50, category: "pancake", badge: "ميني بان كيك", desc: "12 قطعة بصوص النوتيلا الدارك" },
-        { id: 16, name: "ميني بان كيك لوتس (12 قطعة)", price: 50, category: "pancake", badge: "ميني بان كيك", desc: "12 قطعة ميني بان كيك بصوص اللوتس" },
-        { id: 18, name: "ميني بان كيك كيندر (12 قطعة)", price: 55, category: "pancake", badge: "ميني بان كيك", desc: "12 قطعة مع صوص الكيندر الشهي" },
+            { id: 8, name: "ميني بان كيك شوكلت (12 قطعة)", price: 40, category: "pancake", badge: "ميني بان كيك", desc: "12 قطعة ميني بان كيك مع الشوكلاتة" },
+            { id: 10, name: "ميني بان كيك كارميل (12 قطعة)", price: 40, category: "pancake", badge: "ميني بان كيك", desc: "12 قطعة ميني بان كيك بصوص الكارميل" },
+            { id: 12, name: "ميني بان كيك نوتيلا وايت (12 قطعة)", price: 50, category: "pancake", badge: "ميني بان كيك", desc: "12 قطعة بصوص النوتيلا البيضاء" },
+            { id: 14, name: "ميني بان كيك نوتيلا دارك (12 قطعة)", price: 50, category: "pancake", badge: "ميني بان كيك", desc: "12 قطعة بصوص النوتيلا الدارك" },
+            { id: 16, name: "ميني بان كيك لوتس (12 قطعة)", price: 50, category: "pancake", badge: "ميني بان كيك", desc: "12 قطعة ميني بان كيك بصوص اللوتس" },
+            { id: 18, name: "ميني بان كيك كيندر (12 قطعة)", price: 55, category: "pancake", badge: "ميني بان كيك", desc: "12 قطعة مع صوص الكيندر الشهي" },
 
-        // فريسكا
-        { id: 19, name: "فريسكا نوتيلا بنانا", price: 50, category: "freska", badge: "فريسكا", desc: "النوتيلا وحبات الموز" },
-        { id: 20, name: "فريسكا شوكلت اوريو", price: 50, category: "freska", badge: "فريسكا", desc: "الشوكولاتة وقطع الأوريو" },
-        { id: 21, name: "فريسكا شوكلت كيك", price: 50, category: "freska", badge: "فريسكا", desc: "الشوكولاتة وقطع الكيك" },
-        { id: 22, name: "فريسكا لوتس كيك", price: 50, category: "freska", badge: "فريسكا", desc: "صوص اللوتس والكيك" },
-        { id: 23, name: "فريسكا كارميل مارشميلو", price: 50, category: "freska", badge: "فريسكا", desc: "الكارميل وقطع المارشميلو" },
+            { id: 19, name: "فريسكا نوتيلا بنانا", price: 50, category: "freska", badge: "فريسكا", desc: "النوتيلا وحبات الموز" },
+            { id: 20, name: "فريسكا شوكلت اوريو", price: 50, category: "freska", badge: "فريسكا", desc: "الشوكولاتة وقطع الأوريو" },
+            { id: 21, name: "فريسكا شوكلت كيك", price: 50, category: "freska", badge: "فريسكا", desc: "الشوكولاتة وقطع الكيك" },
+            { id: 22, name: "فريسكا لوتس كيك", price: 50, category: "freska", badge: "فريسكا", desc: "صوص اللوتس والكيك" },
+            { id: 23, name: "فريسكا كارميل مارشميلو", price: 50, category: "freska", badge: "فريسكا", desc: "الكارميل وقطع المارشميلو" },
 
-        // ايس كوفي
-        { id: 24, name: "ايس لاتية", price: 50, category: "coffee", badge: "ايس كوفي", desc: "لاتيه بارد ومنعش" },
-        { id: 25, name: "ايس موكا", price: 55, category: "coffee", badge: "ايس كوفي", desc: "موكا باردة بصوص الشوكلاتة" },
-        { id: 26, name: "ايس لاتية كارميل", price: 55, category: "coffee", badge: "ايس كوفي", desc: "لاتيه بارد بنكهة الكارميل" },
-        { id: 27, name: "ايس لاتية فراولة", price: 55, category: "coffee", badge: "ايس كوفي", desc: "لاتيه بارد مع صوص الفراولة" },
-        { id: 28, name: "ايس لاتية بلو بيري", price: 55, category: "coffee", badge: "ايس كوفي", desc: "لاتيه بارد بنكهة البلو بيري" },
-        { id: 29, name: "ايس اسبانش لاتية", price: 60, category: "coffee", badge: "ايس كوفي", desc: "اسبانش لاتية " },
+            { id: 24, name: "ايس لاتية", price: 50, category: "coffee", badge: "ايس كوفي", desc: "لاتيه بارد ومنعش" },
+            { id: 25, name: "ايس موكا", price: 55, category: "coffee", badge: "ايس كوفي", desc: "موكا باردة بصوص الشوكلاتة" },
+            { id: 26, name: "ايس لاتية كارميل", price: 55, category: "coffee", badge: "ايس كوفي", desc: "لاتيه بارد بنكهة الكارميل" },
+            { id: 27, name: "ايس لاتية فراولة", price: 55, category: "coffee", badge: "ايس كوفي", desc: "لاتيه بارد مع صوص الفراولة" },
+            { id: 28, name: "ايس لاتية بلو بيري", price: 55, category: "coffee", badge: "ايس كوفي", desc: "لاتيه بارد بنكهة البلو بيري" },
+            { id: 29, name: "ايس اسبانش لاتية", price: 60, category: "coffee", badge: "ايس كوفي", desc: "اسبانش لاتية مميز" },
 
-        // ميكس صودا
-        { id: 30, name: "جيلي كولا", price: 45, category: "soda", badge: "ميكس صودا", desc: "مشروب صودا بنكهة الجيلي كولا المنعشة" },
-        { id: 31, name: "بلو باشون", price: 50, category: "soda", badge: "ميكس صودا", desc: "بلو كرساو + باشون فروت + صودا" },
-        { id: 32, name: "بلو بيتش", price: 50, category: "soda", badge: "ميكس صودا", desc: "بلو كرساو + خوخ + صودا" },
-        { id: 33, name: "كلاود باشون", price: 50, category: "soda", badge: "ميكس صودا", desc: "فراولة + باشون فروت + صودا" },
-        { id: 34, name: "بينك راش", price: 50, category: "soda", badge: "ميكس صودا", desc: "فراولة + بلو بيري + صودا" },
-        { id: 35, name: "بيري منت", price: 50, category: "soda", badge: "ميكس صودا", desc: "بلو بيري + نعناع + صودا" },
+            { id: 30, name: "جيلي كولا", price: 45, category: "soda", badge: "ميكس صودا", desc: "مشروب صودا بنكهة الجيلي كولا المنعشة" },
+            { id: 31, name: "بلو باشون", price: 50, category: "soda", badge: "ميكس صودا", desc: "بلو كرساو + باشون فروت + صودا" },
+            { id: 32, name: "بلو بيتش", price: 50, category: "soda", badge: "ميكس صودا", desc: "بلو كرساو + خوخ + صودا" },
+            { id: 33, name: "كلاود باشون", price: 50, category: "soda", badge: "ميكس صودا", desc: "فراولة + باشون فروت + صودا" },
+            { id: 34, name: "بينك راش", price: 50, category: "soda", badge: "ميكس صودا", desc: "فراولة + بلو بيري + صودا" },
+            { id: 35, name: "بيري منت", price: 50, category: "soda", badge: "ميكس صودا", desc: "بلو بيري + نعناع + صودا" },
 
-        // اضافات
-        { id: 36, name: "اوريو", price: 10, category: "addons", badge: "إضافات", desc: "إضافة قطع أوريو " },
-        { id: 37, name: "قطع فاكهة", price: 10, category: "addons", badge: "إضافات", desc: "إضافة قطع فاكهة " },
-        { id: 38, name: "مارشميلو", price: 10, category: "addons", badge: "إضافات", desc: "إضافة قطع مارشميلو " }
+            { id: 36, name: "اوريو", price: 10, category: "addons", badge: "إضافات", desc: "إضافة قطع أوريو" },
+            { id: 37, name: "قطع فاكهة", price: 10, category: "addons", badge: "إضافات", desc: "إضافة قطع فاكهة" },
+            { id: 38, name: "مارشميلو", price: 10, category: "addons", badge: "إضافات", desc: "إضافة قطع مارشميلو" }
         ];
 
         let cart = [];
-        let currentActiveCategory = null; 
+        let activeCategory = null;
 
-        function filterMenu(category, element) {
+        const categoriesData = [
+            { id: "happiness", name: "ميكس السعادة", img: "happiness.jpg" },
+            { id: "pancake", name: "ميني بان كيك", img: "pancake.jpg" },
+            { id: "freska", name: "فريسكا", img: "freska.jpg" },
+            { id: "coffee", name: "ايس كوفي", img: "coffee.jpg" },
+            { id: "soda", name: "ميكس صودا", img: "soda.jpg" },
+            { id: "addons", name: "إضافات", img: "addons.jpg" }
+        ];
+
+        function renderMenu() {
             const activeContainer = document.getElementById('active-section-container');
             const categoryGrid = document.getElementById('category-grid');
 
-            if (currentActiveCategory === category) {
-                // إلغاء التحديد وإرجاع الزر مكانه الطبيعي
-                element.classList.remove('active');
-                currentActiveCategory = null;
-                categoryGrid.appendChild(element); // يرجع لمكانه مع البقية
-                
+            if (!activeCategory) {
+                // حالة عدم اختيار أي تبويب (عرض الرسالة الترحيبية وإرجاع كل الأزرار لشبكة الأسفل)
                 activeContainer.innerHTML = `
                     <div class="empty-select-msg" id="default-msg">
-                        👇 اضغط على أي قسم بالأسفل لعرض التبويب ومحتوياته مباشرة هنا
+                        👇 اضغط على أي قسم بالأسفل لعرض التبويب في الأعلى ومحتوياته مباشرة تحته
                     </div>
                 `;
+                
+                categoryGrid.innerHTML = categoriesData.map(cat => `
+                    <div class="category-card" data-category="${cat.id}" onclick="selectCategory('${cat.id}')">
+                        <img src="${cat.img}" alt="${cat.name}">
+                        <h3>${cat.name}</h3>
+                    </div>
+                `).join('');
                 return;
             }
 
-            // لو فيه تبويب قديم محدد، نرجعه لشبكة الأزرار الأساسية الأول
-            const oldActive = document.querySelector('.category-card.active');
-            if (oldActive) {
-                oldActive.classList.remove('active');
-                categoryGrid.appendChild(oldActive);
-            }
+            // لو فيه تبويب محدد: إظهاره في الأعلى لوحده، وباقي الأزرار تحت
+            const selectedCatObj = categoriesData.find(c => c.id === activeCategory);
+            const remainingCats = categoriesData.filter(c => c.id !== activeCategory);
+            const filteredItems = menuData.filter(i => i.category === activeCategory);
 
-            // تحديد التبويب الجديد
-            element.classList.add('active');
-            currentActiveCategory = category;
+            // بناء HTML التبويب النشط في الأعلى مع منتجاته تحته مباشرة
+            let htmlContent = `
+                <div style="display:flex; justify-content:center; margin-bottom:20px;">
+                    <div class="category-card active-pinned" onclick="selectCategory('${selectedCatObj.id}')">
+                        <img src="${selectedCatObj.img}" alt="${selectedCatObj.name}">
+                        <h3>${selectedCatObj.name}</h3>
+                    </div>
+                </div>
+                <div class="menu-grid">
+            `;
 
-            // نضع زر التبويب المحدد في أعلى حاوية العرض، وتحته مباشرة منتجاته
-            activeContainer.innerHTML = '';
-            
-            // إنشاء نسخة متحركة من الزر ليظهر فوق المنتجات
-            let topCardWrapper = document.createElement('div');
-            topCardWrapper.style.display = 'flex';
-            topCardWrapper.style.justifyContent = 'center';
-            topCardWrapper.style.marginBottom = '20px';
-            
-            let clonedCard = element.cloneNode(true);
-            clonedCard.onclick = () => filterMenu(category, element); // إعادة ربط الحدث
-            topCardWrapper.appendChild(clonedCard);
-            
-            activeContainer.appendChild(topCardWrapper);
-
-            // تصفية المنتجات وعرضها تحت زر التبويب مباشرة
-            const filteredItems = menuData.filter(i => i.category === category);
-            let gridHtml = `<div class="menu-grid">`;
-            
             filteredItems.forEach(item => {
-                gridHtml += `
+                htmlContent += `
                     <div class="menu-card">
                         <div>
                             <span class="item-badge">${item.badge}</span>
@@ -806,12 +792,28 @@
                     </div>
                 `;
             });
-            gridHtml += `</div>`;
-            activeContainer.innerHTML += gridHtml;
+            htmlContent += `</div>`;
+            activeContainer.innerHTML = htmlContent;
 
-            // باقي الأزرار ستكون في شبكة الأزرار بالأسفل تلقائياً
-            // تمرير سلس ليظهر التبويب المختار ومحتواه في أعلى الشاشة تماماً
+            // بناء الأزرار الباقية في الشبكة بالأسفل
+            categoryGrid.innerHTML = remainingCats.map(cat => `
+                <div class="category-card" data-category="${cat.id}" onclick="selectCategory('${cat.id}')">
+                    <img src="${cat.img}" alt="${cat.name}">
+                    <h3>${cat.name}</h3>
+                </div>
+            `).join('');
+
+            // تمرير سلس ليظهر التبويب المختار في بداية الشاشة
             activeContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function selectCategory(catId) {
+            if (activeCategory === catId) {
+                activeCategory = null; // إغلاق التبويب وإعادته مكانه لو تم الضغط عليه مجدداً
+            } else {
+                activeCategory = catId;
+            }
+            renderMenu();
         }
 
         function addToCart(id) {
@@ -867,7 +869,7 @@
                                 <button class="qty-btn" onclick="changeQuantity(${item.id}, 1)">+</button>
                             </div>
                         </div>
-                        <button onclick="removeItemCompletely(${item.id})" style="background:none; border:none; color:#ef4444; cursor:pointer; font-weight:bold; font-size:12px;">حذف الكل</button>
+                        <button onclick="removeItemCompletely(${item.id})" style="background:none; border:none; color:#ef4444; cursor:pointer; font-weight:bold; font-size:12px;">حذف</button>
                     </div>
                 `;
             });
