@@ -329,7 +329,7 @@
             border-color: white;
         }
 
-        /* مساحة العرض الديناميكية (التي ستظهر فوق المنتجات) */
+        /* مساحة العرض الديناميكية */
         .active-section-container {
             scroll-margin-top: 80px;
             margin-bottom: 40px;
@@ -531,6 +531,130 @@
             font-size: 15px;
         }
 
+        /* نافذة إدخال بيانات العميل (Modal) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-box {
+            background: white;
+            width: 90%;
+            max-width: 400px;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-box {
+            transform: translateY(0);
+        }
+
+        .modal-title {
+            font-size: 20px;
+            color: var(--dark-text);
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--dark-text);
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 2px solid var(--pill-blue);
+            border-radius: 12px;
+            font-size: 14px;
+            outline: none;
+            font-family: 'Tajawal', sans-serif;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-blue);
+        }
+
+        .delivery-options {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .delivery-option-label {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-main);
+            padding: 10px;
+            border-radius: 12px;
+            border: 2px solid var(--pill-blue);
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--dark-text);
+        }
+
+        .delivery-option-label input {
+            accent-color: var(--primary-blue);
+            width: 18px;
+            height: 18px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn-confirm {
+            background: #25d366;
+            color: white;
+        }
+
+        .btn-cancel {
+            background: #e2e8f0;
+            color: var(--muted-text);
+        }
+
         /* الفوتر */
         .footer {
             background: var(--dark-text);
@@ -626,33 +750,7 @@
             </div>
 
             <!-- شبكة أزرار التصنيفات (الباقية) -->
-            <div class="category-grid" id="category-grid">
-                <div class="category-card" data-category="happiness" onclick="selectCategory('happiness')">
-                    <img src="happiness.jpg" alt="ميكس السعادة">
-                    <h3>ميكس السعادة </h3>
-                </div>
-                <div class="category-card" data-category="pancake" onclick="selectCategory('pancake')">
-                    <img src="pancake.jpg" alt="ميني بان كيك">
-                    <h3>ميني بان كيك </h3>
-                </div>
-                <div class="category-card" data-category="freska" onclick="selectCategory('freska')">
-                    <selectCategory></selectCategory>
-                    <img src="freska.jpg" alt="فريسكا">
-                    <h3>فريسكا </h3>
-                </div>
-                <div class="category-card" data-category="coffee" onclick="selectCategory('coffee')">
-                    <img src="coffee.jpg" alt="ايس كوفي">
-                    <h3>ايس كوفي </h3>
-                </div>
-                <div class="category-card" data-category="soda" onclick="selectCategory('soda')">
-                    <img src="soda.jpg" alt="ميكس صودا">
-                    <h3>ميكس صودا </h3>
-                </div>
-                <div class="category-card" data-category="addons" onclick="selectCategory('addons')">
-                    <img src="addons.jpg" alt="إضافات">
-                    <h3>إضافات </h3>
-                </div>
-            </div>
+            <div class="category-grid" id="category-grid"></div>
         </div>
     </section>
 
@@ -670,9 +768,41 @@
                 <span>الإجمالي الكلي:</span>
                 <span id="cart-total">0 ج.م</span>
             </div>
-            <button class="btn btn-whatsapp-send" onclick="sendOrderWhatsApp()">
+            <button class="btn btn-whatsapp-send" onclick="openCheckoutModal()">
                 إرسال الطلب عبر الواتساب 💬
             </button>
+        </div>
+    </div>
+
+    <!-- نافذة إدخال بيانات العميل (Modal) -->
+    <div class="modal-overlay" id="checkout-modal">
+        <div class="modal-box">
+            <h3 class="modal-title">بيانات الاستلام 📋</h3>
+            <div class="form-group">
+                <label>اسم العميل:</label>
+                <input type="text" id="customer-name" placeholder="اكتب اسمك الكريم">
+            </div>
+            <div class="form-group">
+                <label>العنوان:</label>
+                <input type="text" id="customer-address" placeholder="اسم الشارع، العمارة، الرقْم...">
+            </div>
+            <div class="form-group">
+                <label>طريقة الاستلام:</label>
+                <div class="delivery-options">
+                    <label class="delivery-option-label">
+                        <input type="radio" name="delivery_type" value="توصيل دليفري 🛵" checked>
+                        توصيل دليفري 🛵
+                    </label>
+                    <label class="delivery-option-label">
+                        <input type="radio" name="delivery_type" value="استلام من المكان 🏪">
+                        استلام من المكان 🏪
+                    </label>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn btn-cancel" onclick="closeCheckoutModal()">إلغاء</button>
+                <button class="modal-btn btn-confirm" onclick="sendOrderWhatsApp()">تأكيد الإرسال 🚀</button>
+            </div>
         </div>
     </div>
 
@@ -745,7 +875,6 @@
             const categoryGrid = document.getElementById('category-grid');
 
             if (!activeCategory) {
-                // حالة عدم اختيار أي تبويب (عرض الرسالة الترحيبية وإرجاع كل الأزرار لشبكة الأسفل)
                 activeContainer.innerHTML = `
                     <div class="empty-select-msg" id="default-msg">
                         👇 اضغط على أي قسم بالأسفل لعرض التبويب في الأعلى ومحتوياته مباشرة تحته
@@ -761,12 +890,10 @@
                 return;
             }
 
-            // لو فيه تبويب محدد: إظهاره في الأعلى لوحده، وباقي الأزرار تحت
             const selectedCatObj = categoriesData.find(c => c.id === activeCategory);
             const remainingCats = categoriesData.filter(c => c.id !== activeCategory);
             const filteredItems = menuData.filter(i => i.category === activeCategory);
 
-            // بناء HTML التبويب النشط في الأعلى مع منتجاته تحته مباشرة
             let htmlContent = `
                 <div style="display:flex; justify-content:center; margin-bottom:20px;">
                     <div class="category-card active-pinned" onclick="selectCategory('${selectedCatObj.id}')">
@@ -795,7 +922,6 @@
             htmlContent += `</div>`;
             activeContainer.innerHTML = htmlContent;
 
-            // بناء الأزرار الباقية في الشبكة بالأسفل
             categoryGrid.innerHTML = remainingCats.map(cat => `
                 <div class="category-card" data-category="${cat.id}" onclick="selectCategory('${cat.id}')">
                     <img src="${cat.img}" alt="${cat.name}">
@@ -803,13 +929,12 @@
                 </div>
             `).join('');
 
-            // تمرير سلس ليظهر التبويب المختار في بداية الشاشة
             activeContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         function selectCategory(catId) {
             if (activeCategory === catId) {
-                activeCategory = null; // إغلاق التبويب وإعادته مكانه لو تم الضغط عليه مجدداً
+                activeCategory = null;
             } else {
                 activeCategory = catId;
             }
@@ -886,19 +1011,57 @@
             document.getElementById('cart-drawer').classList.toggle('open');
         }
 
+        // فتح نافذة إدخال البيانات
+        function openCheckoutModal() {
+            if (cart.length === 0) {
+                alert('برجاء إضافة منتجات للسلة أولاً!');
+                return;
+            }
+            document.getElementById('checkout-modal').classList.add('active');
+        }
+
+        // إغلاق نافذة إدخال البيانات
+        function closeCheckoutModal() {
+            document.getElementById('checkout-modal').classList.remove('active');
+        }
+
+        // إرسال الطلب عبر الواتساب بالبيانات وتحديد الدليفري
         function sendOrderWhatsApp() {
-            if (cart.length === 0) return alert('برجاء إضافة منتجات للسلة أولاً!');
-            let text = "مرحباً Step One 👋، أريد طلب الآتي:\n\n";
+            let name = document.getElementById('customer-name').value.trim();
+            let address = document.getElementById('customer-address').value.trim();
+            let deliveryType = document.querySelector('input[name="delivery_type"]:checked').value;
+
+            if (!name) {
+                alert('برجاء إدخال اسمك الكريم!');
+                return;
+            }
+            if (!address) {
+                alert('برجاء إدخال العنوان!');
+                return;
+            }
+
+            let text = `مرحباً Step One 👋، أريد طلب الآتي:\n\n`;
+            text += `👤 *الاسم:* ${name}\n`;
+            text += `📍 *العنوان:* ${address}\n`;
+            text += `🛵 *نوع الاستلام:* ${deliveryType}\n\n`;
+            text += `--------------------\n`;
+            text += `🛒 *تفاصيل الطلب:*\n`;
+
             let total = 0;
             cart.forEach((item, i) => {
                 let itemTotal = item.price * item.quantity;
                 text += `${i+1}. ${item.name} (×${item.quantity}) - ${itemTotal} ج.م\n`;
                 total += itemTotal;
             });
-            text += `\n💵 *الإجمالي الكلي:* ${total} ج.م`;
+            text += `--------------------\n`;
+            text += `💵 *الإجمالي الكلي:* ${total} ج.م`;
 
             window.open(`https://wa.me/201043084581?text=${encodeURIComponent(text)}`, '_blank');
+            closeCheckoutModal();
         }
+
+        // تشغيل المنيو عند تحميل الصفحة
+        renderMenu();
     </script>
 </body>
 </html>
