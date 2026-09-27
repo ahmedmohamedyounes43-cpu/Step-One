@@ -615,7 +615,7 @@
         .delivery-options {
             display: flex;
             gap: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .delivery-option-label {
@@ -639,9 +639,15 @@
                 height: 18px;
             }
 
+        /* خانة العنوان التي ستظهر وتختفي ديناميكياً */
+        #address-group {
+            transition: all 0.3s ease;
+        }
+
         .modal-actions {
             display: flex;
             gap: 10px;
+            margin-top: 15px;
         }
 
         .modal-btn {
@@ -787,27 +793,34 @@
     <div class="modal-overlay" id="checkout-modal">
         <div class="modal-box">
             <h3 class="modal-title">بيانات الاستلام 📋</h3>
+
+            <!-- 1. الاسم فقط أولاً -->
             <div class="form-group">
                 <label>اسم العميل:</label>
                 <input type="text" id="customer-name" placeholder="اكتب اسمك الكريم">
             </div>
-            <div class="form-group">
-                <label>العنوان:</label>
-                <input type="text" id="customer-address" placeholder="اسم الشارع، العمارة، الرقْم...">
-            </div>
+
+            <!-- 2. طريقة الاستلام بعد الاسم مباشرة -->
             <div class="form-group">
                 <label>طريقة الاستلام:</label>
                 <div class="delivery-options">
                     <label class="delivery-option-label">
-                        <input type="radio" name="delivery_type" value="توصيل دليفري 🛵" checked>
+                        <input type="radio" name="delivery_type" value="توصيل دليفري 🛵" checked onchange="toggleAddressField()">
                         توصيل دليفري 🛵
                     </label>
                     <label class="delivery-option-label">
-                        <input type="radio" name="delivery_type" value="استلام من المكان 🏪">
+                        <input type="radio" name="delivery_type" value="استلام من المكان 🏪" onchange="toggleAddressField()">
                         استلام من المكان 🏪
                     </label>
                 </div>
             </div>
+
+            <!-- 3. خانة العنوان (تظهر فقط لو اختار دليفري، وتختفي لو اختار استلام من المكان) -->
+            <div class="form-group" id="address-group">
+                <label>العنوان بالتفصيل:</label>
+                <input type="text" id="customer-address" placeholder="اسم الشارع، العمارة، الرقْم...">
+            </div>
+
             <div class="modal-actions">
                 <button class="modal-btn btn-cancel" onclick="closeCheckoutModal()">إلغاء</button>
                 <button class="modal-btn btn-confirm" onclick="sendOrderWhatsApp()">تأكيد الإرسال 🚀</button>
@@ -1020,12 +1033,30 @@
         document.getElementById('cart-drawer').classList.toggle('open');
         }
 
+        // إظهار أو إخفاء خانة العنوان بناءً على اختيار نوع الاستلام
+        function toggleAddressField() {
+        let deliveryType = document.querySelector('input[name="delivery_type"]:checked').value;
+        let addressGroup = document.getElementById('address-group');
+
+        if (deliveryType.includes('توصيل دليفري')) {
+        addressGroup.style.display = 'block';
+        } else {
+        addressGroup.style.display = 'none';
+        }
+        }
+
         // فتح نافذة إدخال البيانات
         function openCheckoutModal() {
         if (cart.length === 0) {
         alert('برجاء إضافة منتجات للسلة أولاً!');
         return;
         }
+        // إعادة ضبط الحقول عند الفتح الافتراضي
+        document.getElementById('customer-name').value = '';
+        document.getElementById('customer-address').value = '';
+        document.querySelector('input[name="delivery_type"][value="توصيل دليفري 🛵"]').checked = true;
+        toggleAddressField();
+
         document.getElementById('checkout-modal').classList.add('active');
         }
 
@@ -1037,23 +1068,29 @@
         // إرسال الطلب عبر الواتساب بالبيانات وتحديد الدليفري
         function sendOrderWhatsApp() {
         let name = document.getElementById('customer-name').value.trim();
-        let address = document.getElementById('customer-address').value.trim();
         let deliveryType = document.querySelector('input[name="delivery_type"]:checked').value;
+        let address = document.getElementById('customer-address').value.trim();
 
         if (!name) {
         alert('برجاء إدخال الاسم!');
         return;
         }
-        if (!address) {
-        alert('برجاء إدخال العنوان!');
+
+        // لو دليفري لازم يدخل العنوان، لو استلام من المكان مش مطلوب
+        if (deliveryType.includes('توصيل دليفري') && !address) {
+        alert('برجاء إدخال العنوان للتوصيل!');
         return;
         }
 
         let text = `مرحباً Step One 👋، أريد طلب الآتي:\n\n`;
         text += `👤 *الاسم:* ${name}\n`;
+        text += `🛵 *نوع الاستلام:* ${deliveryType}\n`;
+
+        if (deliveryType.includes('توصيل دليفري')) {
         text += `📍 *العنوان:* ${address}\n`;
-        text += `🛵 *نوع الاستلام:* ${deliveryType}\n\n`;
-        text += `--------------------\n`;
+        }
+
+        text += `\n--------------------\n`;
         text += `🛒 *تفاصيل الطلب:*\n`;
 
         let total = 0;
