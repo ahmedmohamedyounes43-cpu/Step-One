@@ -1,0 +1,493 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - Step One</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-main: #f0f9ff;
+            --card-bg: #ffffff;
+            --primary-blue: #0284c7;
+            --sky-blue: #38bdf8;
+            --light-blue: #e0f2fe;
+            --pill-blue: #bae6fd;
+            --dark-text: #0c4a6e;
+            --muted-text: #475569;
+            --shadow-soft: 0 10px 30px -5px rgba(14, 165, 233, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--dark-text);
+            direction: rtl;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        #login-screen {
+            max-width: 400px;
+            margin: 100px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-soft);
+            text-align: center;
+        }
+
+        .admin-box h2 {
+            margin-bottom: 20px;
+            color: var(--dark-text);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: right;
+        }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+                font-size: 14px;
+            }
+
+            .form-group input, .form-group select {
+                width: 100%;
+                padding: 10px 15px;
+                border: 2px solid var(--pill-blue);
+                border-radius: 12px;
+                font-size: 14px;
+                outline: none;
+                font-family: 'Tajawal', sans-serif;
+            }
+
+                .form-group input[type="file"] {
+                    padding: 8px;
+                    background: var(--bg-main);
+                    cursor: pointer;
+                }
+
+                .form-group input:focus, .form-group select:focus {
+                    border-color: var(--primary-blue);
+                }
+
+        .btn {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+
+            .btn:hover {
+                background: var(--dark-text);
+            }
+
+        .btn-danger {
+            background: #ef4444;
+        }
+
+            .btn-danger:hover {
+                background: #dc2626;
+            }
+
+        #admin-panel {
+            display: none;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-soft);
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-soft);
+            margin-bottom: 25px;
+        }
+
+            .card h3 {
+                margin-bottom: 15px;
+                color: var(--dark-text);
+                font-size: 18px;
+                border-bottom: 2px solid var(--light-blue);
+                padding-bottom: 8px;
+            }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: right;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 14px;
+        }
+
+        th {
+            background: var(--light-blue);
+            color: var(--dark-text);
+            font-weight: bold;
+        }
+
+        .cat-thumb {
+            width: 45px;
+            height: 45px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid var(--primary-blue);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- شاشة تسجيل الدخول -->
+        <div id="login-screen">
+            <h2>🔐 دخول لوحة التحكم</h2>
+            <div class="form-group">
+                <label>كلمة المرور:</label>
+                <input type="password" id="admin-pass" placeholder="أدخل كلمة المرور">
+            </div>
+            <button class="btn" onclick="checkLogin()">دخول</button>
+        </div>
+
+        <!-- محتوى لوحة التحكم -->
+        <div id="admin-panel">
+            <div class="admin-header">
+                <h2>إدارة منيو Step One 🛠️</h2>
+                <button class="btn btn-danger" style="width: auto; padding: 8px 15px;" onclick="logout()">تسجيل خروج</button>
+            </div>
+
+            <!-- إدارة الأقسام (إضافة رفع صور وحذف) -->
+            <div class="card">
+                <h3>📁 إضافة قسم جديد مع رفع صورة</h3>
+                <div class="form-group">
+                    <label>اسم القسم:</label>
+                    <input type="text" id="new-cat-name" placeholder="مثال: وافل ساخن">
+                </div>
+                <div class="form-group">
+                    <label>معرف القسم بالانجليزي (ID بدون مسافات):</label>
+                    <input type="text" id="new-cat-id" placeholder="مثال: waffle">
+                </div>
+                <div class="form-group">
+                    <label>اختر صورة القسم من الجهاز:</label>
+                    <input type="file" id="new-cat-img-file" accept="image/*">
+                </div>
+                <button class="btn" onclick="addNewCategory()">إضافة القسم مع الصورة 📂</button>
+
+                <h3 style="margin-top: 25px;">📋 الأقسام الحالية</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>الصورة</th>
+                            <th>اسم القسم</th>
+                            <th>المعرف (ID)</th>
+                            <th>الإجراء</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-categories-list"></tbody>
+                </table>
+            </div>
+
+            <!-- نموذج إضافة منتج جديد -->
+            <div class="card">
+                <h3>➕ إضافة منتج جديد للمنيو</h3>
+                <div class="form-group">
+                    <label>اسم المنتج:</label>
+                    <input type="text" id="new-name" placeholder="مثال: وافل نوتيلا">
+                </div>
+                <div class="form-group">
+                    <label>السعر (ج.م):</label>
+                    <input type="number" id="new-price" placeholder="مثال: 60">
+                </div>
+                <div class="form-group">
+                    <label>اختر القسم:</label>
+                    <select id="new-category"></select>
+                </div>
+                <div class="form-group">
+                    <label>التصنيف الفرعي (Badge):</label>
+                    <input type="text" id="new-badge" placeholder="مثال: وافل">
+                </div>
+                <div class="form-group">
+                    <label>الوصف:</label>
+                    <input type="text" id="new-desc" placeholder="مكونات المنتج">
+                </div>
+                <button class="btn" onclick="addNewItem()">حفظ وإضافة المنتج 🚀</button>
+            </div>
+
+            <!-- قائمة المنتجات الحالية -->
+            <div class="card">
+                <h3>📋 المنتجات الحالية في المنيو</h3>
+                <div style="overflow-x: auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>اسم المنتج</th>
+                                <th>القسم</th>
+                                <th>السعر</th>
+                                <th>الإجراء</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-products-list"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ADMIN_PASSWORD = "123";
+
+        function checkLogin() {
+        const pass = document.getElementById('admin-pass').value;
+        if (pass === ADMIN_PASSWORD) {
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('admin-panel').style.display = 'block';
+        loadData();
+        } else {
+        alert('كلمة المرور غير صحيحة!');
+        }
+        }
+
+        function logout() {
+        document.getElementById('admin-panel').style.display = 'none';
+        document.getElementById('login-screen').style.display = 'block';
+        document.getElementById('admin-pass').value = '';
+        }
+
+        function getStoredCategories() {
+        let stored = localStorage.getItem('stepOneCategories');
+        if (stored) {
+        return JSON.parse(stored);
+        } else {
+        const defaultCategories = [
+        { id: "happiness", name: "ميكس السعادة", img: "happiness.jpg" },
+        { id: "pancake", name: "ميني بان كيك", img: "pancake.jpg" },
+        { id: "freska", name: "فريسكا", img: "freska.jpg" },
+        { id: "coffee", name: "ايس كوفي", img: "coffee.jpg" },
+        { id: "soda", name: "ميكس صودا", img: "soda.jpg" },
+        { id: "addons", name: "إضافات", img: "addons.jpg" }
+        ];
+        localStorage.setItem('stepOneCategories', JSON.stringify(defaultCategories));
+        return defaultCategories;
+        }
+        }
+
+        function getStoredMenu() {
+        let stored = localStorage.getItem('stepOneMenu');
+        if (stored) {
+        return JSON.parse(stored);
+        } else {
+        const defaultMenu = [
+        { id: 1, name: "ميكس شوكلت", price: 70, category: "happiness", badge: "ميكس السعادة", desc: "باستري كريم + اوريو + مارشميلو + قطع فاكهة" },
+        { id: 2, name: "ميكس كارميل", price: 70, category: "happiness", badge: "ميكس السعادة", desc: "باستري كريم + اوريو + مارشميلو + قطع فاكهة" },
+        { id: 3, name: "ميكس نوتيلا وايت", price: 75, category: "happiness", badge: "ميكس السعادة", desc: "باستري كريم + اوريو + مارشميلو + قطع فاكهة" },
+        { id: 4, name: "ميكس نوتيلا دارك", price: 80, category: "happiness", badge: "ميكس السعادة", desc: "باستري كريم + اوريو + مارشميلو + قطع فاكهة" },
+        { id: 5, name: "ميكس لوتس", price: 80, category: "happiness", badge: "ميكس السعادة", desc: "باستري كريم + اوريو + مارشميلو + قطع فاكهة" },
+        { id: 6, name: "ميكس كيندر", price: 85, category: "happiness", badge: "ميكس السعادة", desc: "باستري كريم + اوريو + مارشميلو + قطع فاكهة" },
+        { id: 8, name: "ميني بان كيك شوكلت (12 قطعة)", price: 40, category: "pancake", badge: "ميني بان كيك", desc: "12 قطعة ميني بان كيك مع الشوكلاتة" },
+        { id: 10, name: "ميني بان كيك كارميل (12 قطعة)", price: 40, category: "pancake", badge: "ميني بان كيك", desc: "12 قطعة ميني بان كيك بصوص الكارميل" },
+        { id: 12, name: "ميني بان كيك نوتيلا وايت (12 قطعة)", price: 50, category: "pancake", badge: "ميني بان كيك", desc: "12 قطعة بصوص النوتيلا البيضاء" },
+        { id: 14, name: "ميني بان كيك نوتيلا دارك (12 قطعة)", price: 50, category: "pancake", badge: "ميني بان كيك", desc: "12 قطعة بصوص النوتيلا الدارك" },
+        { id: 16, name: "ميني بان كيك لوتس (12 قطعة)", price: 50, category: "pancake", badge: "ميني بان كيك", desc: "12 قطعة ميني بان كيك بصوص اللوتس" },
+        { id: 18, name: "ميني بان كيك كيندر (12 قطعة)", price: 55, category: "pancake", badge: "ميني بان كيك", desc: "12 قطعة مع صوص الكيندر الشهي" },
+        { id: 19, name: "فريسكا نوتيلا بنانا", price: 50, category: "freska", badge: "فريسكا", desc: "النوتيلا وحبات الموز" },
+        { id: 20, name: "فريسكا شوكلت اوريو", price: 50, category: "freska", badge: "فريسكا", desc: "الشوكولاتة وقطع الأوريو" },
+        { id: 21, name: "فريسكا شوكلت كيك", price: 50, category: "freska", badge: "فريسكا", desc: "الشوكولاتة وقطع الكيك" },
+        { id: 22, name: "فريسكا لوتس كيك", price: 50, category: "freska", badge: "فريسكا", desc: "صوص اللوتس والكيك" },
+        { id: 23, name: "فريسكا كارميل مارشميلو", price: 50, category: "freska", badge: "فريسكا", desc: "الكارميل وقطع المارشميلو" },
+        { id: 24, name: "ايس لاتية", price: 50, category: "coffee", badge: "ايس كوفي", desc: "لاتيه بارد ومنعش" },
+        { id: 25, name: "ايس موكا", price: 55, category: "coffee", badge: "ايس كوفي", desc: "موكا باردة بصوص الشوكلاتة" },
+        { id: 26, name: "ايس لاتية كارميل", price: 55, category: "coffee", badge: "ايس كوفي", desc: "لاتيه بارد بنكهة الكارميل" },
+        { id: 27, name: "ايس لاتية فراولة", price: 55, category: "coffee", badge: "ايس كوفي", desc: "لاتيه بارد مع صوص الفراولة" },
+        { id: 28, name: "ايس لاتية بلو بيري", price: 55, category: "coffee", badge: "ايس كوفي", desc: "لاتيه بارد بنكهة البلو بيري" },
+        { id: 29, name: "ايس اسبانش لاتية", price: 60, category: "coffee", badge: "ايس كوفي", desc: "اسبانش لاتية مميز" },
+        { id: 30, name: "جيلي كولا", price: 45, category: "soda", badge: "ميكس صودا", desc: "مشروب صودا بنكهة الجيلي كولا المنعشة" },
+        { id: 31, name: "بلو باشون", price: 50, category: "soda", badge: "ميكس صودا", desc: "بلو كرساو + باشون فروت + صودا" },
+        { id: 32, name: "بلو بيتش", price: 50, category: "soda", badge: "ميكس صودا", desc: "بلو كرساو + خوخ + صودا" },
+        { id: 33, name: "كلاود باشون", price: 50, category: "soda", badge: "ميكس صودا", desc: "فراولة + باشون فروت + صودا" },
+        { id: 34, name: "بينك راش", price: 50, category: "soda", badge: "ميكس صودا", desc: "فراولة + بلو بيري + صودا" },
+        { id: 35, name: "بيري منت", price: 50, category: "soda", badge: "ميكس صودا", desc: "بلو بيري + نعناع + صودا" },
+        { id: 36, name: "اوريو", price: 10, category: "addons", badge: "إضافات", desc: "إضافة قطع أوريو" },
+        { id: 37, name: "قطع فاكهة", price: 10, category: "addons", badge: "إضافات", desc: "إضافة قطع فاكهة" },
+        { id: 38, name: "مارشميلو", price: 10, category: "addons", badge: "إضافات", desc: "إضافة قطع مارشميلو" }
+        ];
+        localStorage.setItem('stepOneMenu', JSON.stringify(defaultMenu));
+        return defaultMenu;
+        }
+        }
+
+        function loadData() {
+        let categories = getStoredCategories();
+        let menu = getStoredMenu();
+
+        let catTbody = document.getElementById('admin-categories-list');
+        catTbody.innerHTML = '';
+        categories.forEach(cat => {
+        catTbody.innerHTML += `
+        <tr>
+        <td><img src="${cat.img}" class="cat-thumb" alt="img"></td>
+        <td><strong>${cat.name}</strong></td>
+        <td>${cat.id}</td>
+        <td>
+        <button class="btn btn-danger" style="padding: 5px 10px; font-size: 12px;" onclick="deleteCategory('${cat.id}')">حذف</button>
+        </td>
+        </tr>
+        `;
+        });
+
+        let catSelect = document.getElementById('new-category');
+        catSelect.innerHTML = '';
+        categories.forEach(cat => {
+        catSelect.innerHTML += `<option value="${cat.id}">${cat.name}</option>`;
+        });
+
+        let prodTbody = document.getElementById('admin-products-list');
+        prodTbody.innerHTML = '';
+        menu.forEach(item => {
+        prodTbody.innerHTML += `
+        <tr>
+        <td><strong>${item.name}</strong></td>
+        <td>${item.category}</td>
+        <td>${item.price} ج.م</td>
+        <td>
+        <button class="btn btn-danger" style="padding: 5px 10px; font-size: 12px;" onclick="deleteItem(${item.id})">حذف</button>
+        </td>
+        </tr>
+        `;
+        });
+        }
+
+        function addNewCategory() {
+        let name = document.getElementById('new-cat-name').value.trim();
+        let id = document.getElementById('new-cat-id').value.trim().toLowerCase();
+        let fileInput = document.getElementById('new-cat-img-file');
+
+        if (!name || !id) {
+        alert('الرجاء إدخال اسم القسم ومعرف الـ ID.');
+        return;
+        }
+
+        let categories = getStoredCategories();
+        if (categories.some(c => c.id === id)) {
+        alert('معرف القسم (ID) موجود مسبقاً، اختر معرفاً آخر.');
+        return;
+        }
+
+        if (fileInput.files && fileInput.files[0]) {
+        let reader = new FileReader();
+        reader.onload = function(e) {
+        let base64Image = e.target.result;
+        saveCategoryWithImage(id, name, base64Image, categories);
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+        } else {
+        // صورة افتراضية في حال لم يتم اختيار صورة
+        saveCategoryWithImage(id, name, 'happiness.jpg', categories);
+        }
+        }
+
+        function saveCategoryWithImage(id, name, imgPath, categories) {
+        categories.push({ id, name, img: imgPath });
+        localStorage.setItem('stepOneCategories', JSON.stringify(categories));
+
+        document.getElementById('new-cat-name').value = '';
+        document.getElementById('new-cat-id').value = '';
+        document.getElementById('new-cat-img-file').value = '';
+
+        loadData();
+        alert('تم إضافة القسم ورفع الصورة بنجاح!');
+        }
+
+        function deleteCategory(catId) {
+        if (confirm('هل أنت متأكد من حذف هذا القسم؟ سيتم حذف جميع المنتجات التابعة له!')) {
+        let categories = getStoredCategories();
+        categories = categories.filter(c => c.id !== catId);
+        localStorage.setItem('stepOneCategories', JSON.stringify(categories));
+
+        let menu = getStoredMenu();
+        menu = menu.filter(item => item.category !== catId);
+        localStorage.setItem('stepOneMenu', JSON.stringify(menu));
+
+        loadData();
+        }
+        }
+
+        function addNewItem() {
+        let name = document.getElementById('new-name').value.trim();
+        let price = parseFloat(document.getElementById('new-price').value);
+        let category = document.getElementById('new-category').value;
+        let badge = document.getElementById('new-badge').value.trim();
+        let desc = document.getElementById('new-desc').value.trim();
+
+        if (!name || isNaN(price)) {
+        alert('الرجاء إدخال اسم المنتج والسعر بشكل صحيح.');
+        return;
+        }
+
+        let menu = getStoredMenu();
+        let newItem = {
+        id: Date.now(),
+        name: name,
+        price: price,
+        category: category,
+        badge: badge || "قسم جديد",
+        desc: desc || ""
+        };
+
+        menu.push(newItem);
+        localStorage.setItem('stepOneMenu', JSON.stringify(menu));
+
+        document.getElementById('new-name').value = '';
+        document.getElementById('new-price').value = '';
+        document.getElementById('new-badge').value = '';
+        document.getElementById('new-desc').value = '';
+
+        loadData();
+        alert('تم إضافة المنتج بنجاح وتحديث المنيو!');
+        }
+
+        function deleteItem(id) {
+        if (confirm('هل أنت متأكد من حذف هذا المنتج؟')) {
+        let menu = getStoredMenu();
+        menu = menu.filter(item => item.id !== id);
+        localStorage.setItem('stepOneMenu', JSON.stringify(menu));
+        loadData();
+        }
+        }
+    </script>
+</body>
+</html>
